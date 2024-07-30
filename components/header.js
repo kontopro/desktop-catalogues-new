@@ -5,7 +5,10 @@ export default function Header(){
             <header className="header">
                     <div className="top-header">
                         <div className="top-header-left"><p>ΚΕΥ</p></div>
-                        <div className="top-header-center"><p>e-Catalogues</p></div>
+                        <div className="top-header-center">
+                            <p>Ηλεκτρονικοί Κατάλογοι</p>
+                            <p className="no-mobile">(e-Catalogues)</p>
+                        </div>
                         <div className="top-header-right" ><p className="no-mobile"></p></div>
                     </div>
                     <div className="nav-header">
