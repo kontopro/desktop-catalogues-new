@@ -2,13 +2,13 @@ import { useState, useEffect  } from 'react';
 import Link from 'next/link'
 
 import Subnav from '@/components/Subnav';
-import usePartsData from '../../lib/usePartsData';
+import usePartsData from '@/lib/usePartsData';
 
 
 export default function Search() {
 
     const [search, setSearch] = useState('')
-    const data = usePartsData();
+    const { data, isLoading } = usePartsData();
 
     const handleChange = (event) => {
     event.preventDefault();
@@ -18,7 +18,7 @@ export default function Search() {
 
   useEffect(() => {
     if (data) {
-      console.log('Data in Search component, number of items:', data.length);
+      console.log('Data in Search Component, number of items:', data.length);
     }
   }, [data]);
 
@@ -30,11 +30,15 @@ export default function Search() {
           <p>Αναζητήστε Αριθμό Ονομαστικού ή Part Number</p>
           </div>
          <form className='search-form'>
+         {isLoading ? 
+          <p>Φόρτωση δεδομένων...</p>
+         :
           <input type='text' onChange={handleChange} placeholder='Πληκτρολογείστε τουλάχιστον 5 χαρακτήρες' name='ao'/>
+         }
         </form>
           </div>
           <div className="form-listnsn">
-          {search.length>4?
+          {search.length>4? 
                 <table>
                 <thead>
                     <tr>
