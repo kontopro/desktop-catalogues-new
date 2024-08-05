@@ -117,9 +117,6 @@ export async function getStaticProps( { params } )  {
     const {data: parent_assemblies, error2} = await supabase.from('assembly').select('id,name,caption,assembly (id,assid,name,caption)').eq('catalogue_id',catalogue[0].id).is('parent_id',null).order('assid')
     
     // Από τον κατάλογο, βρες μόνο τα υπο-συγκροτήματα για να βρούμε τους ΑΟ
-    // const {data: sub_assemblies, error3} = await supabase.from('assembly').select('id').eq('catalogue_id',catalogue[0].id).gt('parent_id',0)
-    // console.log(sub_assemblies)
-    // Από τα υπο-συγκροτήματα βρες τους ΑΟ
     // const {data: parts, error4} = await supabase.from('part').select('id,name,nsn,pn,quantity,aid,ref_no,picture_no,assembly (id,assid)').in('assembly_id',sub_assemblies.map(x => x.id)).order('aid')
     const {data: parts, error4} = await supabase.rpc('get_parts_from_catalogue', {cat_id: catalogue[0].id})
     return {

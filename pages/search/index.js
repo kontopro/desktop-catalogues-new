@@ -1,6 +1,5 @@
 import { useState, useEffect  } from 'react';
 import Link from 'next/link'
-
 import Subnav from '@/components/Subnav';
 import usePartsData from '@/lib/usePartsData';
 
